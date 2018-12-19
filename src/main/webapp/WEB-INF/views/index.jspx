@@ -1,0 +1,213 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:component="urn:jsptagdir:/WEB-INF/tags/component"
+     xmlns:util="urn:jsptagdir:/WEB-INF/tags/util"
+     xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags"
+     xmlns:form="http://www.springframework.org/tags/form"
+     version="2.0">
+    <spring:url value="/resources/scripts/adduser/lood.js" var="autoNumeric_js"/>
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <style type="text/css">
+        div.top {
+            background-color: #ffc6ae;
+        }
+    </style>
+    <script src="${autoNumeric_js}" type="text/javascript"><!-- required for FF3 and Opera --></script>
+    <div class="row">
+        <div class="col-md-12" style="overflow-y: scroll;height: 600px">
+            <div class="row">
+                <div class="col-md-6 text-right" style="background-color: #000000;width:80px;height: 150px">
+                    <h1 style="font-size: 100px;color: #fffde7">Spring Boot</h1>
+                </div>
+                <div class="col-md-6 text-right"
+                     style="background-color: #000000;width:80px;height: 150px"> <!--style="overflow-y: scroll;height: 100%;width: 100%">-->
+                    <img src="https://sv1.picz.in.th/images/2018/12/13/9Yq67f.jpg" alt="9Yq67f.jpg" border="0"
+                         width="32%"
+                         height="100%"/>
+                </div>
+            </div>
+            <p></p>
+            <div class="row">
+                <div class="col-md-4 text-right">
+                    <select id="mySelect" onchange="myFunction()" class="btn btn-outline-primary">
+                        <option value="First">First</option>
+                        <option value="Last">Last</option>
+                        <option value="Description">Description</option>
+                    </select>
+                    <!-- <button type="button" id="btnsdescription" class="btn btn-outline-primary">Description</button>
+                     <button type="button" id="btnslast" class="btn btn-outline-primary">Last</button>
+                     <button type="button" id="btnsfirst" class="btn btn-outline-primary">First
+                     </button>-->
+                </div>
+                <div class="col-md-4">
+                    <div class="navbar-form" role="search">
+                        <div class="form-group">
+                            <input type="text" id="inputsearch" class="form-control" placeholder="Search"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-outline-danger" type="button" id="adddata" data-toggle="modal"
+                            data-target="#exampleModal1">Add
+                    </button>
+                </div>
+            </div>
+            <div class="offset-md-1 col-md-11 " style="overflow-y: scroll;height: 60%">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            ID
+                        </th>
+                        <th>
+                            First
+                        </th>
+                        <th>
+                            Last
+                        </th>
+                        <th class="text-center">
+                            Description
+                        </th>
+                        <th class="text-center">
+                            Action
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    <jsp:text/>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <p></p>
+    <!--Edit-->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h5>FirstName:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="addfirst" class="form-control" placeholder="First"/>
+                                            <p></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5>LastName:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="addlast" class="form-control" placeholder="Last"/>
+                                            <p></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5>Description:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="adddescription" class="form-control"
+                                                   placeholder="Description"/>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="saveedit"
+                                    style="background-color: #6bff5f">Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Add-->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Add</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <h5>FirstName:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="addfirst1" class="form-control" placeholder="First"/>
+                                            <p></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5>LastName:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="addlast1" class="form-control" placeholder="Last"/>
+                                            <p></p>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <h5>Description:</h5>
+                                        </div>
+                                        <div class="offset-md-1 col-md-9">
+                                            <input type="text" id="adddescription1" class="form-control"
+                                                   placeholder="Description"/>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="saveadd"
+                                    style="background-color: #ff6162">Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Delet-->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" name="delc"
+                                    style="background-color: #ff6162">Delete
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--ssssssssssssssss-->
+</div>
